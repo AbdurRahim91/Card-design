@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achievement Badge Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #07090e; min-height: 100vh; display: grid; place-items: center; }
+    .badge-card { width: 320px; background: radial-gradient(circle at 50% 0%, #312e81, #0f172a); border: 1px solid #4338ca; border-radius: 22px; padding: 26px; text-align: center; color: white; }
+    .trophy { font-size: 52px; margin-bottom: 12px; filter: drop-shadow(0 10px 15px rgba(245,158,11,0.4)); }
+    .tier { color: #fbbf24; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px; }
+    h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+    p { color: #94a3b8; font-size: 0.82rem; margin-bottom: 20px; }
+    .xp-bar { height: 8px; background: #1e293b; border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
+    .xp-fill { width: 85%; height: 100%; background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .xp-text { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #cbd5e1; }
+  </style>
+</head>
+<body>
+  <div class="badge-card">
+    <div class="trophy">🏆</div>
+    <div class="tier">Tier 10 Master</div>
+    <h3>Grand Architect</h3>
+    <p>Completed 100+ production agent workflows with flawless test coverage.</p>
+    <div class="xp-bar"><div class="xp-fill"></div></div>
+    <div class="xp-text">8,500 / 10,000 XP</div>
+  </div>
+</body>
+</html>

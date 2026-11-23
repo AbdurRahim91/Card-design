@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaaS Pricing Tier Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #090e17; min-height: 100vh; display: grid; place-items: center; }
+    .pricing-card { width: 330px; background: linear-gradient(180deg, #131b2e, #0c121e); border: 2px solid #6366f1; border-radius: 22px; padding: 32px 26px; box-shadow: 0 10px 40px rgba(99,102,241,0.2); position: relative; }
+    .badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #6366f1; color: white; font-weight: 800; font-size: 0.72rem; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; }
+    h4 { color: #f8fafc; font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
+    .desc { color: #94a3b8; font-size: 0.8rem; margin-bottom: 20px; }
+    .price { font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 20px; }
+    .price span { font-size: 0.85rem; color: #94a3b8; font-weight: 500; }
+    .features { list-style: none; margin-bottom: 24px; }
+    .features li { color: #cbd5e1; font-size: 0.85rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .features li::before { content: '✓'; color: #818cf8; font-weight: 800; }
+    .btn-plan { width: 100%; padding: 12px; background: #6366f1; color: white; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="pricing-card">
+    <span class="badge">Most Popular</span>
+    <h4>Enterprise Growth</h4>
+    <div class="desc">For scaling engineering orgs</div>
+    <div class="price">$79 <span>/ month</span></div>
+    <ul class="features">
+      <li>Unlimited Multi-Agent Swarms</li>
+      <li>99.99% Uptime Guarantee</li>
+      <li>Dedicated Solution Architect</li>
+      <li>Custom SSO & Security Audits</li>
+    </ul>
+    <button class="btn-plan">Upgrade to Pro</button>
+  </div>
+</body>
+</html>

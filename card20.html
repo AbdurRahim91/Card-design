@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Terminal Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'JetBrains Mono', monospace; background: #0c0f17; min-height: 100vh; display: grid; place-items: center; }
+    .term-card { width: 340px; background: #090d16; border: 1px solid #1e293b; border-radius: 16px; overflow: hidden; }
+    .term-head { padding: 12px 16px; background: #111827; border-bottom: 1px solid #1e293b; display: flex; align-items: center; gap: 6px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #ef4444; }
+    .dot.yellow { background: #f59e0b; }
+    .dot.green { background: #10b981; }
+    .term-title { margin-left: 10px; color: #64748b; font-size: 0.72rem; }
+    .term-body { padding: 18px; font-size: 0.8rem; line-height: 1.6; }
+    .kwd { color: #f43f5e; }
+    .fn { color: #38bdf8; }
+    .str { color: #10b981; }
+    .comm { color: #64748b; }
+  </style>
+</head>
+<body>
+  <div class="term-card">
+    <div class="term-head">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+      <span class="term-title">agent.ts</span>
+    </div>
+    <div class="term-body">
+      <span class="comm">// Initialize agent</span><br>
+      <span class="kwd">const</span> agent = <span class="kwd">new</span> <span class="fn">AIAgent</span>({<br>
+      &nbsp;&nbsp;model: <span class="str">'gemini-pro'</span>,<br>
+      &nbsp;&nbsp;speed: <span class="str">'realtime'</span><br>
+      });<br><br>
+      <span class="kwd">await</span> agent.<span class="fn">orchestrate</span>();
+    </div>
+  </div>
+</body>
+</html>

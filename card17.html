@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atmospheric Weather Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #0c1017; min-height: 100vh; display: grid; place-items: center; }
+    .weather-card { width: 320px; background: linear-gradient(180deg, #1e3a8a, #0f172a); border: 1px solid #2563eb; border-radius: 24px; padding: 26px; color: white; text-align: center; }
+    .city { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; }
+    .condition { color: #93c5fd; font-size: 0.85rem; margin-bottom: 16px; }
+    .icon { font-size: 48px; margin-bottom: 8px; }
+    .temp { font-size: 3rem; font-weight: 800; margin-bottom: 16px; }
+    .details { display: flex; justify-content: space-around; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 14px; font-size: 0.82rem; color: #cbd5e1; }
+  </style>
+</head>
+<body>
+  <div class="weather-card">
+    <div class="city">Tokyo, Japan</div>
+    <div class="condition">Scattered Rain & Thunder</div>
+    <div class="icon">⛈️</div>
+    <div class="temp">18°C</div>
+    <div class="details">
+      <div>💧 84% Hum</div>
+      <div>💨 14 km/h Wind</div>
+    </div>
+  </div>
+</body>
+</html>

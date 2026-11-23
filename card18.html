@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Testimonial Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #0c0f17; min-height: 100vh; display: grid; place-items: center; }
+    .quote-card { width: 340px; background: #161e2e; border: 1px solid #283750; border-radius: 20px; padding: 28px; }
+    .stars { color: #fbbf24; font-size: 16px; margin-bottom: 14px; }
+    p { color: #e2e8f0; font-size: 0.95rem; line-height: 1.6; margin-bottom: 22px; font-style: italic; }
+    .person { display: flex; align-items: center; gap: 12px; }
+    .avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+    .name { color: #fff; font-weight: 700; font-size: 0.95rem; }
+    .title { color: #94a3b8; font-size: 0.78rem; }
+  </style>
+</head>
+<body>
+  <div class="quote-card">
+    <div class="stars">★★★★★</div>
+    <p>"Antigravity accelerated our frontend prototyping by 10x. The component designs are breathtaking right out of the box."</p>
+    <div class="person">
+      <img class="avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Sarah Chen">
+      <div>
+        <div class="name">Sarah Chen</div>
+        <div class="title">VP of Product at ScaleUp</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

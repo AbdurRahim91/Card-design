@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Asset Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #0c0f17; min-height: 100vh; display: grid; place-items: center; }
+    .crypto-card { width: 340px; background: linear-gradient(135deg, #1e1b4b, #0f172a); border: 1px solid #312e81; border-radius: 20px; padding: 26px; color: white; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .coin-badge { display: flex; align-items: center; gap: 8px; font-weight: 700; }
+    .coin-icon { width: 34px; height: 34px; background: #6366f1; border-radius: 50%; display: grid; place-items: center; font-size: 18px; }
+    .change { font-family: 'JetBrains Mono', monospace; color: #10b981; font-size: 0.82rem; background: rgba(16,185,129,0.15); padding: 4px 8px; border-radius: 6px; }
+    .balance-label { font-size: 0.78rem; color: #94a3b8; margin-bottom: 4px; }
+    .balance-val { font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 800; margin-bottom: 20px; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .btn-act { padding: 10px; background: #312e81; border: none; border-radius: 8px; color: white; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+    .btn-act.primary { background: #6366f1; }
+  </style>
+</head>
+<body>
+  <div class="crypto-card">
+    <div class="header">
+      <div class="coin-badge">
+        <div class="coin-icon">Ξ</div>
+        <span>Ethereum</span>
+      </div>
+      <span class="change">+14.28%</span>
+    </div>
+    <div class="balance-label">Total Portfolio Balance</div>
+    <div class="balance-val">$48,290.50</div>
+    <div class="actions">
+      <button class="btn-act primary">Send</button>
+      <button class="btn-act">Receive</button>
+    </div>
+  </div>
+</body>
+</html>

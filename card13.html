@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Activity Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #000; min-height: 100vh; display: grid; place-items: center; }
+    .fit-card { width: 320px; background: #121216; border: 1px solid #23232b; border-radius: 22px; padding: 24px; color: white; }
+    .top { display: flex; justify-content: space-between; margin-bottom: 18px; }
+    h3 { font-size: 1.15rem; font-weight: 700; }
+    .date { color: #71717a; font-size: 0.8rem; }
+    .rings-area { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
+    .stats-col { flex: 1; }
+    .stat-row { margin-bottom: 10px; }
+    .stat-val { font-size: 1.1rem; font-weight: 800; }
+    .stat-lbl { font-size: 0.72rem; text-transform: uppercase; color: #a1a1aa; }
+    .val-move { color: #fa243c; }
+    .val-exercise { color: #a2fa24; }
+    .val-stand { color: #24d6fa; }
+  </style>
+</head>
+<body>
+  <div class="fit-card">
+    <div class="top">
+      <h3>Today's Activity</h3>
+      <span class="date">Nov 23</span>
+    </div>
+    <div class="rings-area">
+      <div style="font-size: 42px;">🎯</div>
+      <div class="stats-col">
+        <div class="stat-row"><div class="stat-val val-move">580 / 600 CAL</div><div class="stat-lbl">Move</div></div>
+        <div class="stat-row"><div class="stat-val val-exercise">42 / 30 MIN</div><div class="stat-lbl">Exercise</div></div>
+        <div class="stat-row"><div class="stat-val val-stand">11 / 12 HRS</div><div class="stat-lbl">Stand</div></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

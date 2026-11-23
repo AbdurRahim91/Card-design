@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frozen Ice Multi-Card Carousel Slider</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ice-primary: #a5f3fc;
+      --ice-glow: rgba(56, 189, 248, 0.45);
+      --ice-crystal: rgba(224, 242, 254, 0.85);
+      --ice-border: rgba(255, 255, 255, 0.35);
+      --ice-card-bg: rgba(255, 255, 255, 0.08);
+      --frost-shadow: 0 20px 45px -10px rgba(14, 165, 233, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 20%, #0d2847 0%, #071526 60%, #030a13 100%);
+      color: #f0f9ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.5rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Floating Frost Auroras & Ice Ambient Glows */
+    .aurora-bg {
+      position: absolute;
+      top: -15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.18) 0%, rgba(14, 165, 233, 0.08) 50%, transparent 70%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .header-section {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      z-index: 1;
+      max-width: 650px;
+    }
+
+    .ice-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(186, 230, 253, 0.12);
+      border: 1px solid rgba(186, 230, 253, 0.35);
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #bae6fd;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+      margin-bottom: 12px;
+    }
+
+    .header-section h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 0 35px rgba(186, 230, 253, 0.6), 0 2px 4px rgba(0,0,0,0.5);
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .header-section p {
+      color: #93c5fd;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* Slider Container */
+    .slider-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1280px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .slider-viewport {
+      width: 100%;
+      overflow: hidden;
+      padding: 24px 8px 36px;
+      border-radius: 28px;
+    }
+
+    .slider-track {
+      display: flex;
+      gap: 24px;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+
+    /* Frosted Ice Glass Card */
+    .ice-card {
+      flex: 0 0 calc((100% - (24px * 2)) / 3);
+      min-width: 290px;
+      background: var(--ice-card-bg);
+      border: 1px solid var(--ice-border);
+      border-top: 1px solid rgba(255, 255, 255, 0.6);
+      border-left: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 24px;
+      padding: 24px 22px;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: var(--frost-shadow), inset 0 0 25px rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    /* Refractive Ice Gloss Sheen */
+    .ice-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 45%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border-radius: 24px 24px 80px 80px;
+      pointer-events: none;
+    }
+
+    /* Frost Ice Crystals Particle Overlay */
+    .ice-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      box-shadow: inset 0 0 35px rgba(125, 211, 252, 0.15);
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .ice-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 25px 50px -10px rgba(56, 189, 248, 0.5), inset 0 0 30px rgba(255, 255, 255, 0.15);
+    }
+
+    /* Card Elements */
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .ice-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .temp-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(14, 165, 233, 0.25);
+      border: 1px solid rgba(125, 211, 252, 0.4);
+      color: #e0f2fe;
+    }
+
+    .card-media {
+      width: 100%;
+      height: 160px;
+      border-radius: 16px;
+      object-fit: cover;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: #bfdbfe;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      flex: 1;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      position: relative;
+      z-index: 2;
+    }
+
+    .ice-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      color: #7dd3fc;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    .stat-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .btn-ice {
+      padding: 8px 16px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      color: #ffffff;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.25);
+    }
+
+    .btn-ice:hover {
+      background: rgba(255, 255, 255, 0.95);
+      color: #0369a1;
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6);
+    }
+
+    /* Slider Arrows */
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(16px);
+      color: #e0f2fe;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      transition: all 0.25s ease;
+    }
+
+    .nav-arrow:hover {
+      background: rgba(56, 189, 248, 0.35);
+      border-color: #ffffff;
+      color: #ffffff;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.7);
+    }
+
+    .nav-arrow.prev { left: -26px; }
+    .nav-arrow.next { right: -26px; }
+
+    /* Slider Dots Indicators */
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 1.5rem;
+      z-index: 1;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .dot.active {
+      width: 28px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #38bdf8, #bae6fd);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.7);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .ice-card {
+        flex: 0 0 calc((100% - 24px) / 2);
+      }
+      .nav-arrow.prev { left: -14px; }
+      .nav-arrow.next { right: -14px; }
+    }
+
+    @media (max-width: 680px) {
+      .ice-card {
+        flex: 0 0 100%;
+      }
+      .header-section h1 {
+        font-size: 1.8rem;
+      }
+      .nav-arrow {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="aurora-bg"></div>
+
+  <div class="header-section">
+    <div class="ice-tag">❄️ Cryogenic Glass Design</div>
+    <h1>Glacial Multi-Card Carousel</h1>
+    <p>Frosted ice translucent cards sliding smoothly with multi-view perspective, refraction gloss, and ambient winter lighting.</p>
+  </div>
+
+  <div class="slider-wrapper">
+    <button class="nav-arrow prev" onclick="slidePrev()" aria-label="Previous Cards">&#10094;</button>
+
+    <div class="slider-viewport" id="sliderViewport">
+      <div class="slider-track" id="sliderTrack">
+
+        <!-- Card 1 -->
+        <div class="ice-card">
+          <div class="card-top">
+            <div class="ice-icon">🧊</div>
+            <span class="temp-pill">-18°C FROST</span>
+          </div>
+          <img class="card-media" src="https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?w=600&auto=format&fit=crop&q=80" alt="Glacier Cave" />
+          <h3 class="card-title">Glacier Cavern</h3>
+          <p class="card-desc">Subterranean crystal formations preserved under centuries of Scandinavian pack ice.</p>
+          <div class="card-footer">
+            <div class="ice-stat">
+              <span class="stat-label">Elevation</span>
+              <span class="stat-val">2,480m</span>
+            </div>
+            <button class="btn-ice">Explore</button>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="ice-card">
+          <div class="card-top">
+            <div class="ice-icon">❄️</div>
+            <span class="temp-pill">-25°C BOREALIS</span>
+          </div>
+          <img class="card-media" src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&auto=format&fit=crop&q=80" alt="Aurora Borealis" />
+          <h3 class="card-title">Aurora Horizon</h3>
+          <p class="card-desc">Atmospheric cyan luminescence reflecting across untouched polar ice sheets.</p>
+          <div class="card-footer">
+            <div class="ice-stat">
+              <span class="stat-label">Intensity</span>
+              <span class="stat-val">Kp 8.4</span>
+            </div>
+            <button class="btn-ice">Observe</button>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="ice-card">
+          <div class="card-top">
+            <div class="ice-icon">💎</div>
+            <span class="temp-pill">-32°C ARCTIC</span>
+          </div>
+          <img class="card-media" src="https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=600&auto=format&fit=crop&q=80" alt="Crystal Ice" />
+          <h3 class="card-title">Diamond Permafrost</h3>
+          <p class="card-desc">Ultra-dense translucent ice lenses exhibiting geometric hexagonal refraction.</p>
+          <div class="card-footer">
+            <div class="ice-stat">
+              <span class="stat-label">Clarity</span>
+              <span class="stat-val">99.8%</span>
+            </div>
+            <button class="btn-ice">Analyze</button>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="ice-card">
+          <div class="card-top">
+            <div class="ice-icon">🏔️</div>
+            <span class="temp-pill">-15°C SUMMIT</span>
+          </div>
+          <img class="card-media" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&auto=format&fit=crop&q=80" alt="Alpine Ridge" />
+          <h3 class="card-title">Alpine Needle</h3>
+          <p class="card-desc">High-altitude ridge bathed in morning frost with winds reaching 80 km/h.</p>
+          <div class="card-footer">
+            <div class="ice-stat">
+              <span class="stat-label">Altitude</span>
+              <span class="stat-val">4,120m</span>
+            </div>
+            <button class="btn-ice">Ascend</button>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="ice-card">
+          <div class="card-top">
+            <div class="ice-icon">🌨️</div>
+            <span class="temp-pill">-40°C POLAR</span>
+          </div>
+          <img class="card-media" src="https://images.unsplash.com/photo-1516715094483-75da7dee9758?w=600&auto=format&fit=crop&q=80" alt="Polar Tundra" />
+          <h3 class="card-title">Polar Tundra</h3>
+          <p class="card-desc">Endless horizon of pristine white drifts and crystalline silence under winter skies.</p>
+          <div class="card-footer">
+            <div class="ice-stat">
+              <span class="stat-label">Wind Chill</span>
+              <span class="stat-val">-54°C</span>
+            </div>
+            <button class="btn-ice">Discover</button>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="ice-card">
+          <div class="card-top">
+            <div class="ice-icon">🌌</div>
+            <span class="temp-pill">-22°C FJORD</span>
+          </div>
+          <img class="card-media" src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=600&auto=format&fit=crop&q=80" alt="Frozen Fjord" />
+          <h3 class="card-title">Frozen Fjord Waters</h3>
+          <p class="card-desc">Mirror-still saltwater ice reflecting towering cliffs and starry winter constellations.</p>
+          <div class="card-footer">
+            <div class="ice-stat">
+              <span class="stat-label">Ice Depth</span>
+              <span class="stat-val">1.8m</span>
+            </div>
+            <button class="btn-ice">Voyage</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <button class="nav-arrow next" onclick="slideNext()" aria-label="Next Cards">&#10095;</button>
+  </div>
+
+  <!-- Dots Navigation -->
+  <div class="slider-dots" id="dotsContainer"></div>
+
+  <script>
+    const track = document.getElementById('sliderTrack');
+    const cards = document.querySelectorAll('.ice-card');
+    const dotsContainer = document.getElementById('dotsContainer');
+    
+    let currentIndex = 0;
+
+    function getVisibleCount() {
+      if (window.innerWidth <= 680) return 1;
+      if (window.innerWidth <= 1024) return 2;
+      return 3;
+    }
+
+    function getMaxIndex() {
+      return Math.max(0, cards.length - getVisibleCount());
+    }
+
+    function updateSlider() {
+      const visible = getVisibleCount();
+      const maxIdx = getMaxIndex();
+      if (currentIndex > maxIdx) currentIndex = maxIdx;
+
+      const cardWidth = cards[0].offsetWidth;
+      const gap = 24;
+      const offset = currentIndex * (cardWidth + gap);
+      
+      track.style.transform = `translateX(-${offset}px)`;
+
+      renderDots();
+    }
+
+    function renderDots() {
+      dotsContainer.innerHTML = '';
+      const maxIdx = getMaxIndex();
+      const totalSteps = maxIdx + 1;
+
+      for (let i = 0; i < totalSteps; i++) {
+        const dot = document.createElement('div');
+        dot.className = `dot ${i === currentIndex ? 'active' : ''}`;
+        dot.onclick = () => {
+          currentIndex = i;
+          updateSlider();
+        };
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function slideNext() {
+      const maxIdx = getMaxIndex();
+      if (currentIndex < maxIdx) {
+        currentIndex++;
+      } else {
+        currentIndex = 0; // loop back
+      }
+      updateSlider();
+    }
+
+    function slidePrev() {
+      const maxIdx = getMaxIndex();
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = maxIdx; // loop forward
+      }
+      updateSlider();
+    }
+
+    // Touch and Drag swipe support
+    let startX = 0;
+    let isDragging = false;
+
+    track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      if (diff > 50) slideNext();
+      else if (diff < -50) slidePrev();
+      isDragging = false;
+    });
+
+    window.addEventListener('resize', () => {
+      updateSlider();
+    });
+
+    // Initialize on load
+    updateSlider();
+  </script>
+</body>
+</html>

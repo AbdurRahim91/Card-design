@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neumorphism Soft UI Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #1e2430; min-height: 100vh; display: grid; place-items: center; }
+    .neu-card { width: 320px; background: #1e2430; border-radius: 28px; padding: 28px; box-shadow: 12px 12px 24px #141820, -12px -12px 24px #283040; text-align: center; }
+    .neu-avatar { width: 88px; height: 88px; border-radius: 50%; margin: 0 auto 16px; padding: 5px; box-shadow: inset 4px 4px 8px #141820, inset -4px -4px 8px #283040; }
+    .neu-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+    h3 { color: #e2e8f0; font-size: 1.2rem; margin-bottom: 4px; }
+    .role { color: #38bdf8; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-bottom: 14px; }
+    p { color: #94a3b8; font-size: 0.85rem; line-height: 1.5; margin-bottom: 22px; }
+    .neu-btn { width: 100%; padding: 12px; background: #1e2430; color: #38bdf8; border: none; border-radius: 14px; font-weight: 700; cursor: pointer; box-shadow: 5px 5px 12px #141820, -5px -5px 12px #283040; transition: all 0.2s; }
+    .neu-btn:active { box-shadow: inset 4px 4px 8px #141820, inset -4px -4px 8px #283040; }
+  </style>
+</head>
+<body>
+  <div class="neu-card">
+    <div class="neu-avatar">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80" alt="Person">
+    </div>
+    <h3>Julian Vance</h3>
+    <div class="role">Lead AI Engineer</div>
+    <p>Architecting multi-modal neural systems with zero-latency inference workflows.</p>
+    <button class="neu-btn">Connect Profile</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanban Project Task Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #0c0f17; min-height: 100vh; display: grid; place-items: center; }
+    .task-card { width: 320px; background: #161e2e; border: 1px solid #283750; border-radius: 16px; padding: 20px; }
+    .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .badge-urgent { background: rgba(239,68,68,0.15); color: #f87171; font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 6px; }
+    h4 { color: #f8fafc; font-size: 1rem; margin-bottom: 8px; line-height: 1.4; }
+    p { color: #94a3b8; font-size: 0.8rem; line-height: 1.5; margin-bottom: 16px; }
+    .bar { height: 6px; background: #26334a; border-radius: 10px; overflow: hidden; margin-bottom: 16px; }
+    .fill { width: 75%; height: 100%; background: #6366f1; border-radius: 10px; }
+    .footer { display: flex; justify-content: space-between; align-items: center; color: #94a3b8; font-size: 0.78rem; }
+    .avatars img { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #161e2e; margin-left: -6px; }
+  </style>
+</head>
+<body>
+  <div class="task-card">
+    <div class="top-row">
+      <span class="badge-urgent">High Priority</span>
+      <span style="color: #64748b; font-size: 0.8rem;">ENG-204</span>
+    </div>
+    <h4>Deploy Multi-Agent Orchestrator</h4>
+    <p>Wire up WebSocket channels and real-time response stream hooks.</p>
+    <div class="bar"><div class="fill"></div></div>
+    <div class="footer">
+      <span>Due Tomorrow</span>
+      <div class="avatars">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="User">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="User">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
